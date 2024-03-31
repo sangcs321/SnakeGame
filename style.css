@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.score {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.border {
+  border: 10px solid gold;
+}
+
+.gameBoard {
+  display: grid;
+  grid-template-columns: repeat(20, 20px);
+  grid-template-rows: repeat(20, 20px);
+}
+
+.snake {
+  background-color: blueviolet;
+}
+
+/*# sourceMappingURL=style.css.map */
