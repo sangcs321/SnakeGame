@@ -1,3 +1,6 @@
+$backgroundColor:greenyellow;
+$snakeHeadColor:blueviolet;
+$borderColor:gold;
 body{
   margin: 0;
   padding:0;
@@ -12,13 +15,14 @@ body{
   padding: 0 10px;
 }
 .border{
-  border:10px solid gold;
+  border:10px solid $borderColor;
 }
 .gameBoard{
+  background-color: $backgroundColor;
   display: grid;
   grid-template-columns: repeat(20,20px);
   grid-template-rows: repeat(20,20px) ;
 }
 .snake{
-  background-color: blueviolet;
+  background-color: $snakeHeadColor;
 }
