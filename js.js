@@ -4,6 +4,8 @@ let gameInterval;
 let gridSize = 20;
 let snake = [{x: gridSize / 2, y: gridSize / 2}];
 let direction="bottom";
+let food=creatFood();
+
 //cập nhật trạng thái các đối tượng của mình
 function update() {
     let head ={... snake[0]};
@@ -33,6 +35,7 @@ function update() {
 function draw() {
     board.empty();
     drawSnake();
+    drawFood();
 }
 function creatElement(className){
     return $("<div>").addClass(className);
@@ -43,6 +46,16 @@ function drawSnake() {
         setPos(snakeElement,part);
         board.append(snakeElement);
     })
+}
+function creatFood(){
+    let foodX = Math.ceil(Math.random()*20);
+    let foodY = Math.ceil(Math.random()*20);
+    return {x:foodX,y:foodY};
+}
+function drawFood() {
+        let foodElement = creatElement("food");
+        setPos(foodElement,food);
+        board.append(foodElement);
 }
 loop();
 function setPos(snakeElement,part){
@@ -60,27 +73,23 @@ function loop() {
 $(document).on("keydown", (event) =>{
     let eventKey= event.key;
     switch (eventKey){
+        //trái
         case ("ArrowLeft"):
-            direction="left";
-            break;
         case ("a"):
             direction="left";
             break;
+        //phải
         case ("ArrowRight"):
-            direction="right";
-            break;
         case ("d"):
             direction="right";
             break;
+        //lên
         case ("ArrowUp"):
-            direction="top";
-            break;
         case ("w"):
             direction="top";
             break;
+        //xuống
         case ("ArrowDown"):
-            direction="bottom";
-            break;
         case ("s"):
             direction="bottom";
             break;

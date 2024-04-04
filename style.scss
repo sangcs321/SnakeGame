@@ -1,6 +1,7 @@
 $backgroundColor:greenyellow;
 $snakeHeadColor:blueviolet;
 $borderColor:gold;
+$foodColor:red;
 body{
   margin: 0;
   padding:0;
@@ -25,4 +26,7 @@ body{
 }
 .snake{
   background-color: $snakeHeadColor;
+}
+.food{
+  background-color: $foodColor;
 }
