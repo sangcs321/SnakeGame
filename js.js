@@ -5,7 +5,7 @@ let gridSize = 20;
 let snake = [{x: gridSize / 2, y: gridSize / 2}];
 let direction="bottom";
 let food=creatFood();
-
+let isPlaying = false;
 //cập nhật trạng thái các đối tượng của mình
 function update() {
     let head ={... snake[0]};
@@ -28,10 +28,17 @@ function update() {
         }
     }
     snake.unshift(head);//them phan tu head moi vao mang snake
-    snake.pop();//xoa phan tu cuoi cung cua mang snake
+    if(isFoodEaten()){
+        food = creatFood();
+    }else {
+        snake.pop();
+    }
 }
-
-//ve con ran
+function isFoodEaten(){
+    let head = snake[0];
+    return (head.x === food.x && head.y===food.y)
+}
+//ve tat ca cac thanh phan
 function draw() {
     board.empty();
     drawSnake();
@@ -57,22 +64,47 @@ function drawFood() {
         setPos(foodElement,food);
         board.append(foodElement);
 }
-loop();
 function setPos(snakeElement,part){
     snakeElement.css("gridColumn",part.x);
     snakeElement.css("gridRow",part.y);
 }
 //goi lai lien tuc 2 ham tren
 function loop() {
+    clearInterval(gameInterval);
     //trong khoang thgian la speed se goi la 2 ham  update, draw
     gameInterval = setInterval(() => {
-        update();
-        draw();
+        if(isPlaying){
+            update();
+            checkCollisions();
+            draw();
+        }
     }, speed)
+}
+function checkCollisions(){
+    let head = snake[0];
+    function selfCollied(){
+        for(let part of snake.slice(1,snake.length)){
+            if(part.x===head.x && part.y===head.y) return true;
+        }
+    }
+
+    let isWallCollied=(head.x > gridSize || head.x <0 || head.y > gridSize || head.y <0);
+    if(isWallCollied || selfCollied()){
+        isPlaying=false;
+    }
+}
+function startGame(){
+    isPlaying=true;
+    if(isPlaying){
+        loop();
+    }
 }
 $(document).on("keydown", (event) =>{
     let eventKey= event.key;
     switch (eventKey){
+        case (" "):
+            startGame();
+            break;
         //trái
         case ("ArrowLeft"):
         case ("a"):
