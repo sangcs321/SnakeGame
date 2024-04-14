@@ -6,6 +6,12 @@ let snake = [{x: gridSize / 2, y: gridSize / 2}];
 let direction="bottom";
 let food=creatFood();
 let isPlaying = false;
+let score=0;
+let highestScore=0;
+function updateScore(){
+    $("#currentScore").text(score);
+
+}
 //cập nhật trạng thái các đối tượng của mình
 function update() {
     let head ={... snake[0]};
@@ -30,6 +36,7 @@ function update() {
     snake.unshift(head);//them phan tu head moi vao mang snake
     if(isFoodEaten()){
         food = creatFood();
+        score++;
     }else {
         snake.pop();
     }
@@ -98,6 +105,9 @@ function startGame(){
     if(isPlaying){
         loop();
     }
+}
+function stopGame(){
+    
 }
 $(document).on("keydown", (event) =>{
     let eventKey= event.key;
