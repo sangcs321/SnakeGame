@@ -37,6 +37,7 @@ function update() {
     if(isFoodEaten()){
         food = creatFood();
         score++;
+        console.log(score);
     }else {
         snake.pop();
     }
@@ -81,6 +82,7 @@ function loop() {
     //trong khoang thgian la speed se goi la 2 ham  update, draw
     gameInterval = setInterval(() => {
         if(isPlaying){
+            updateScore();
             update();
             checkCollisions();
             draw();
