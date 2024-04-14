@@ -1,4 +1,5 @@
 let board = $(".gameBoard");
+let guide = $(".guide");
 let speed = 100;
 let gameInterval;
 let gridSize = 20;
@@ -11,6 +12,13 @@ let highestScore=0;
 function updateScore(){
     $("#currentScore").text(score);
 
+}
+function updateHighestScore(){
+    if(score > highestScore){
+        highestScore=score;
+        console.log("true");
+    }
+    $("#highestScore").text(score);
 }
 //cập nhật trạng thái các đối tượng của mình
 function update() {
@@ -56,8 +64,9 @@ function creatElement(className){
     return $("<div>").addClass(className);
 }
 function drawSnake() {
-    snake.forEach(part =>{
-        let snakeElement = creatElement("snake");
+    snake.forEach((part,index) =>{
+        let className = index===0?"snakeHead":"snakeBody"
+        let snakeElement = creatElement(className);
         setPos(snakeElement,part);
         board.append(snakeElement);
     })
@@ -99,17 +108,25 @@ function checkCollisions(){
 
     let isWallCollied=(head.x > gridSize || head.x <0 || head.y > gridSize || head.y <0);
     if(isWallCollied || selfCollied()){
-        isPlaying=false;
+        stopGame();
     }
 }
 function startGame(){
+    guide.hide();
     isPlaying=true;
     if(isPlaying){
         loop();
     }
 }
 function stopGame(){
-    
+    isPlaying=false;
+    food=creatFood();
+    snake = [{x: gridSize / 2, y: gridSize / 2}];
+    direction="right";
+    updateHighestScore();
+    score=0;
+    clearInterval(gameInterval);
+    guide.show();
 }
 $(document).on("keydown", (event) =>{
     let eventKey= event.key;
@@ -120,22 +137,22 @@ $(document).on("keydown", (event) =>{
         //trái
         case ("ArrowLeft"):
         case ("a"):
-            direction="left";
+            direction= direction ==="right"?direction:"left";
             break;
         //phải
         case ("ArrowRight"):
         case ("d"):
-            direction="right";
+            direction= direction ==="left"?direction:"right";
             break;
         //lên
         case ("ArrowUp"):
         case ("w"):
-            direction="top";
+            direction= direction ==="bottom"?direction:"top";
             break;
         //xuống
         case ("ArrowDown"):
         case ("s"):
-            direction="bottom";
+            direction= direction ==="top"?direction:"bottom";
             break;
     }
 })

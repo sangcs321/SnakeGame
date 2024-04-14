@@ -24,7 +24,10 @@ body{
   grid-template-columns: repeat(20,20px);
   grid-template-rows: repeat(20,20px) ;
 }
-.snake{
+.snakeHead{
+  background-color: yellow;
+}
+.snakeBody{
   background-color: $snakeHeadColor;
 }
 .food{
