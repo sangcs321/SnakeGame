@@ -4,7 +4,9 @@ let speed = 100;
 let gameInterval;
 let gridSize = 20;
 let snake = [{x: gridSize / 2, y: gridSize / 2}];
-let direction="bottom";
+snake.push({ x: gridSize / 2 - 1, y: gridSize / 2 });
+snake.push({ x: gridSize / 2 - 2, y: gridSize / 2 });
+let direction="right";
 let food=creatFood();
 let isPlaying = false;
 let score=0;
@@ -23,6 +25,10 @@ function updateHighestScore(){
 //cập nhật trạng thái các đối tượng của mình
 function update() {
     let head ={... snake[0]};
+    head.x>20?head.x=0:head.x;
+    head.y>20?head.y=0:head.y;
+    head.x<0?head.x=20:head.x;
+    head.y<0?head.y=20:head.y;
     switch (direction){
         case("right"):{
             head.x++;
@@ -67,6 +73,10 @@ function drawSnake() {
     snake.forEach((part,index) =>{
         let className = index===0?"snakeHead":"snakeBody"
         let snakeElement = creatElement(className);
+        part.x>20?part.x=1:part.x;
+        part.y>20?part.y=1:part.y;
+        part.x<1?part.x=20:part.x;
+        part.y<1?part.y=20:part.y;
         setPos(snakeElement,part);
         board.append(snakeElement);
     })
@@ -106,8 +116,8 @@ function checkCollisions(){
         }
     }
 
-    let isWallCollied=(head.x > gridSize || head.x <0 || head.y > gridSize || head.y <0);
-    if(isWallCollied || selfCollied()){
+    // let isWallCollied=(head.x > gridSize || head.x <0 || head.y > gridSize || head.y <0);
+    if(selfCollied()){
         stopGame();
     }
 }
@@ -122,6 +132,8 @@ function stopGame(){
     isPlaying=false;
     food=creatFood();
     snake = [{x: gridSize / 2, y: gridSize / 2}];
+    snake.push({ x: gridSize / 2 - 1, y: gridSize / 2 });
+    snake.push({ x: gridSize / 2 - 2, y: gridSize / 2 });
     direction="right";
     updateHighestScore();
     score=0;
