@@ -1,28 +1,137 @@
+<!--Dang_Thanh_Sang_MSSV_21130511-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Snake</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="mainMenu">
+    <div class="menuContent">
+        <div class="menuBtn">
+        <button id="startGame" class="btn btn-primary" >Bắt đầu</button></div>
+        <div class="menuBtn">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#introModal">
+            Giới thiệu</button></div>
+        <div class="menuBtn">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#guideModal">
+            Hướng dẫn</button></div>
+    </div>
+    <div class="levelMenu">
+        <div class="menuBtn">
+        <button id="level1" class="btn btn-primary" >Level 1</button></div>
+        <div class="menuBtn">
+        <button id="level2" class="btn btn-primary" >Level 2</button></div>
+        <div class="menuBtn">
+        <button id="level3" class="btn btn-primary" >Level 3</button></div>
+        <div class="menuBtn">
+<!--        <button id="level4" class="btn btn-primary" >Level 4</button></div>-->
+<!--        <div class="menuBtn">-->
+<!--        <button id="level5" class="btn btn-primary" >Level 5</button></div>-->
+<!--        <div class="menuBtn">-->
+<!--        <button id="level6" class="btn btn-primary" >Level 6</button></div>-->
+<!--        <div class="menuBtn">-->
+        <button id="back" class="btn btn-primary" >Quay lại</button></div>
+    </div>
+</div>
 <div class="gameContainer">
     <div class="score">
         <h3>Current score: <span id="currentScore">0</span></h3>
         <h3>Highest score: <span id="highestScore">0</span></h3>
     </div>
-    <div class="border">
+    <div class="borderGame">
         <div class="gameBoard">
         </div>
         <div class="guide">
             <h4>Press space to play</h4>
+        </div>
+    </div>
+</div>
+<!--modal giới thiệu-->
+<div class="modal" id="introModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Giới thiệu bản thân</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-5" >Họ và tên:</div>
+                    <div class="col-sm-7" >Đặng Thanh Sang</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5" >Mssv:</div>
+                    <div class="col-sm-7" >21130511</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5" >Quê quán:</div>
+                    <div class="col-sm-7" >Thái Bình</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5" >Tình trạng hôn nhân:</div>
+                    <div class="col-sm-7" >Độc thân</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5" >Sức khỏe sinh sản:</div>
+                    <div class="col-sm-7" >Tốt</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5" >Sở thích:</div>
+                    <div class="col-sm-7" >Hát, đọc sách, đá banh và bơi</div>
+                </div>
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--modal hướng dẫn-->
+<div class="modal" id="guideModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Hướng dẫn</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Game snake sử dụng phím mũi tên để thay đổi hướng di chuyển: lên, xuống, trái và phải.
+                Con rắn không để đi lùi.<br>
+                Level 1: Trò chơi sẽ kết thúc nếu đầu của con rắn chạm vào thân của mình.<br>
+                Level 2: Trò chơi sẽ kết thúc nếu dầu của con rắn chạm vào thân hoặc bức tường ở mép trò chơi.<br>
+                Level 3:  Đây không phải là con rắn bình thường mà là một con rắn bị mất nhận thức về phương hướng. Khi bạn muốn nó rẻ phải nhưng nó lại rẻ trái, các hướng còn lại điều như vậy, đều sẽ đi ngược lại. Trò chơi sẽ kết thúc nếu dầu của con rắn chạm vào thân hoặc bức tường ở mép trò chơi.<br>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+            </div>
 
         </div>
     </div>
 </div>
 
-
-
+<div class="gameOver">
+        <div class="menuBtn">
+            <button id="tryAgain" class="btn btn-primary" >Chơi lại</button></div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script src="js.js"></script>

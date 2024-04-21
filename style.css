@@ -13,15 +13,15 @@ body {
   padding: 0 10px;
 }
 
-.border {
+.borderGame {
   border: 10px solid gold;
 }
 
 .gameBoard {
   background-color: greenyellow;
   display: grid;
-  grid-template-columns: repeat(20, 20px);
-  grid-template-rows: repeat(20, 20px);
+  grid-template-columns: repeat(20, 30px);
+  grid-template-rows: repeat(20, 30px);
 }
 
 .snakeHead {
@@ -38,6 +38,41 @@ body {
 
 .guide {
   text-align: center;
+}
+
+.mainMenu {
+  width: 600px;
+  height: 600px;
+  background-image: url("logo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.menuBtn button {
+  margin: 5px;
+  width: 100%;
+}
+
+.gameOver {
+  width: 600px;
+  height: 600px;
+  background-image: url("GameOver.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.wall {
+  background-color: pink;
 }
 
 /*# sourceMappingURL=style.css.map */

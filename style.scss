@@ -1,7 +1,9 @@
+//Dang_Thanh_Sang_MSSV_21130511
 $backgroundColor:greenyellow;
 $snakeHeadColor:blueviolet;
 $borderColor:gold;
 $foodColor:red;
+$gridSize:20;
 body{
   margin: 0;
   padding:0;
@@ -15,14 +17,14 @@ body{
   justify-content: space-between;
   padding: 0 10px;
 }
-.border{
+.borderGame{
   border:10px solid $borderColor;
 }
 .gameBoard{
   background-color: $backgroundColor;
   display: grid;
-  grid-template-columns: repeat(20,20px);
-  grid-template-rows: repeat(20,20px) ;
+  grid-template-columns: repeat($gridSize,30px);
+  grid-template-rows: repeat($gridSize,30px) ;
 }
 .snakeHead{
   background-color: yellow;
@@ -35,4 +37,35 @@ body{
 }
 .guide{
   text-align: center;
+}
+.mainMenu{
+  width: 600px;
+  height: 600px;
+  background-image: url('logo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.menuBtn button{
+  margin: 5px;
+  width: 100%;
+}
+.gameOver{
+  width: 600px;
+  height: 600px;
+  background-image: url('GameOver.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.wall{
+  background-color: pink;
 }
